@@ -1,6 +1,5 @@
 const { Router } = require("express")
-const { userModel } = require("../db")
-const { courseModel } = require("../db")
+const { userModel, courseModel, purchaseModel } = require("../db")
 const { userAuth } = require("../middlewares/middleware.user")
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
@@ -9,14 +8,19 @@ const userRouter = Router()
 
 
 userRouter.post("/signup", async (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-
+    const userZodSchema = z.object({
+        email: z.string().email(),
+        password: z.string().min(4).max(32),
+        firstName: z.string().min(2).max(20),
+        lastName: z.string().min(2).max(20)
+    })
+    const parsedData = userZodSchema.safeParse(req.body);
+    if (!parsedData.success) {
+        return res.status(403).send(parsedData.error)
+    }
+    const { email, password, firstName, lastName } = req.body;
     const hashedPassword = await bcrypt.hash(password, 7);
-    console.log(hashedPassword);
-    try{
+    try {
         await userModel.create({
             email: email,
             password: hashedPassword,
@@ -26,29 +30,38 @@ userRouter.post("/signup", async (req, res) => {
         res.status(200).json({
             "message": "Signuped up successfully"
         })
-    }catch(e){
+    } catch (e) {
         res.send(e);
     }
 })
 userRouter.post("/login", async (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    const userZodSchema = z.object({
+        email: z.string().email(),
+        password: z.string().min(4).max(32)
+    })
+    const parsedData = userZodSchema.safeParse(req.body);
+    if (!parsedData.success) {
+        return res.status(403).send(parsedData.error)
+    }
+
+    const { email, password } = req.body;
+
     const user = await userModel.findOne({
         email: email
     });
-    if(!user){
+    if (!user) {
         return res.status(403).json({
             "message": "Email not signed up or incorrect password"
         })
     }
     const match = await bcrypt.compare(password, user.password);
-    if(match){
-        const token = jwt.sign(user._id.toString(), process.env.USER_SECRET);
+    if (match) {
+        const token = jwt.sign({ userId: user._id.toString() }, process.env.USER_SECRET);
         res.status(200).json({
             "token": token
         })
     }
-    else{
+    else {
         res.status(403).json({
             "message": "Incorrect password"
         })
@@ -57,16 +70,16 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.use(userAuth);
 
-userRouter.get("/purchases", (req, res) => {
+userRouter.get("/purchased-courses", async(req, res) => {
     const userId = req.userId;
-    try{
-        const purchase = purchaseModel.find({userId: userId});
-        res.json({ "purchase" : purchase})
-    }catch(e){
+    try {
+        const purchase = await purchaseModel.find({ userId: userId });
+        res.json({ "purchase": purchase })
+    } catch (e) {
         res.send(e)
     }
 })
 
 module.exports = {
-    userRouter : userRouter
+    userRouter: userRouter
 }

@@ -123,6 +123,8 @@ adminRouter.put("/course/content", async (req, res) => {
     }
     const {title, description, courseImg, price, category, language} = req.body;
 
+
+    //needs to be completed
     await adminModel.updateOne({
 
     })

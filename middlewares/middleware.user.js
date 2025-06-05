@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken')
 
 function userAuth(req, res, next){
     const token = req.headers.token;
-    const userId = jwt.verify(token, process.env.USER_SECRET);
+    const user = jwt.verify(token, process.env.USER_SECRET);
 
-    if(userId){
-        req.userId = userId;
+    if(user){
+        req.userId = user.userId;
         next()
     }
     else{

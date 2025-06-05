@@ -117,39 +117,63 @@ adminRouter.put("/course/content", async (req, res) => {
         category: z.string(),
         language: z.string()
     })
+
     const parsedData = courseZodSchema.safeParse(req.body);
     if(!parsedData.success){
         return res.send(parsedData.error)
     }
+    const courseId = req.headers.courseid;
     const {title, description, courseImg, price, category, language} = req.body;
 
+    try{
+        await courseModel.updateOne({
+            _id : courseId,
+            created_by : adminId
+        },
+            {
+                title: title,
+                description: description,
+                courseImg: courseImg,
+                price: price,
+                category: category,
+                language: language
+            }
+        )
+    
+        res.json({
+            "message": "course edited"
+        })
 
-    //needs to be completed
-    await adminModel.updateOne({
-
-    })
-
-    res.json({
-        "message": "login"
-    })
+    }catch(e){
+        res.send(e.error)
+    }
 })
-adminRouter.delete("/delete", (req, res) => {
+adminRouter.delete("/delete/:courseid", async(req, res) => {
     const adminId = req.adminId;
+    const courseId = req.params.courseid;
 
+    try {
+        const course = await courseModel.findOne({ _id: courseId, created_by: adminId });
 
-    res.json({
-        "message": "delete"
-    })
+        if (!course) {
+            return res.status(404).json({ message: "Course not found or unauthorized" });
+        }
+
+        await courseModel.findByIdAndDelete(courseId);
+
+        res.status(200).json({ message: "Course deleted successfully" });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
 })
 adminRouter.get("/courses", async (req, res) => {
     const adminId = req.adminId;
-    console.log(adminId)
+    const courseId = req.params.courseid;
     try {
-        const courses = await courseModel.find({ created_by: adminId });
-        console.log(courses)
-        res.status(200).json(courses)
+        await Model.findByIdAndDelete(id);
+        res.status(200).json({ message: "Deleted successfully" });
     } catch (e) {
-        console.log(e)
+        res.status(500).json({ error: e.message });
     }
 })
 

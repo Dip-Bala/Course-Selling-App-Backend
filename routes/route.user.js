@@ -73,8 +73,18 @@ userRouter.use(userAuth);
 userRouter.get("/purchased-courses", async(req, res) => {
     const userId = req.userId;
     try {
-        const purchase = await purchaseModel.find({ userId: userId });
-        res.json({ "purchase": purchase })
+        const purchases = await purchaseModel
+            .find({ userId: userId })
+            .populate({
+                path: "courseId",         // expands the courseId => detailed course doc
+                populate: {
+                    path: "created_by",  // optional: gives admin details
+                    model: "admin"
+                }
+            });
+            const purchasedCourses = purchases.map(p => p.courseId);
+            res.send({purchasedCourses})
+
     } catch (e) {
         res.send(e)
     }

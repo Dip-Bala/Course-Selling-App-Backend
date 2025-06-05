@@ -19,7 +19,7 @@ const adminSchema = new Schema({
 const courseSchema = new Schema({
     created_by: {
         type: Schema.Types.ObjectId,
-        ref: 'adminSchema'
+        ref: 'admins'  //ref should match the Mongoose model name, not the schema variable
 
     },
     timestamp: {
@@ -41,11 +41,11 @@ const courseSchema = new Schema({
 const purchaseSchema = new Schema({
     courseId: {
         type: Schema.Types.ObjectId,
-        ref: 'courseSchema'
+        ref: 'course'
     },
     userId: {
         type: Schema.Types.ObjectId,
-        ref: 'adminSchema'
+        ref: 'admin'
     }
 })
 

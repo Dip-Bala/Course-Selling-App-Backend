@@ -11,13 +11,8 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
       const data = await userSignup(formData);
-      alert('Signup successful!');
-      console.log(data);
-    } catch (err) {
-      alert(`Error: ${err}`);
-    }
+      alert(data); 
   };
 
   return (

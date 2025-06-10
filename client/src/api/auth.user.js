@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const userSignup = async (userData) => {
     try{
-        const response = await axios.post('api/v1/user/signup', userData, {withCredentials: true});
+        const response = await axios.post('/api/v1/user/signup', userData, {withCredentials: true});
         // console.log(response)
         return response.data.message;
     }catch(e){
@@ -14,7 +14,7 @@ export const userSignup = async (userData) => {
 export const userLogin = async (userData) => {
 
     try{
-        const response = await axios.post('api/v1/user/login', userData, {withCredentials: true});
+        const response = await axios.post('/api/v1/user/login', userData, {withCredentials: true});
         return response.data;
     }catch(e){
         return { message: e.response?.data?.message || 'Login failed' }

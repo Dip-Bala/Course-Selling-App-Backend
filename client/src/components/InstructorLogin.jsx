@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import {useSetRecoilState} from 'recoil'
-import {userLogin} from '../../api/auth.user'
-import {userLoggedIn} from '../../store/atoms/login.user'
+import {instructorLogin} from '../api/auth.instructor'
+import {instructorLoggedIn} from '../store/atoms/login.instructor'
 
 export default function Login(){
-    const setUserLoggedIn = useSetRecoilState(userLoggedIn)
+    const setUserLoggedIn = useSetRecoilState(instructorLoggedIn)
     const [formData, setFormData] = useState({email: '', password: ''});
 
     const handleChange = (e) => {
@@ -20,11 +20,11 @@ export default function Login(){
       };
     async function handleSubmit(e){
         e.preventDefault();
-        const response = await userLogin(formData); //response from api call
+        const response = await instructorLogin(formData); //response from api call
         alert(response.message);
         if (response.token) {
             localStorage.setItem('firstName', response.firstName);
-        localStorage.setItem('user-token', response.token);
+        localStorage.setItem('instructor-token', response.token);
         setUserLoggedIn(true); 
         }
        

@@ -28,7 +28,7 @@ export default function Login() {
             localStorage.setItem('firstName', response.firstName);
             localStorage.setItem('user-token', response.token);
             setUserLoggedIn(true);
-            navigate('/user/home')
+            navigate('/user')
         }
 
     }

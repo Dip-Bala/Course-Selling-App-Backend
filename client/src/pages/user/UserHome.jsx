@@ -1,10 +1,9 @@
 import React from 'react'
 
 export default function UserHome(){
-    return(
+    return (
         <div>
-hi
-            
+            Say Nice things about the courses here
         </div>
     )
 }

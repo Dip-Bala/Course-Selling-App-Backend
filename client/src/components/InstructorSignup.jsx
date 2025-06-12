@@ -13,12 +13,18 @@ export default function InstructorSignup() {
     e.preventDefault();
     const data = await instructorSignup(formData);
     alert(data);
+    if (data === "Signup successful" || data.includes("success")) {
+      // Reset form
+      setFormData({ email: '', password: '', firstName: '', lastName: '' });
+      // Navigate to homepage
+      navigate('/instructor');
+    }
   };
 
   return (
       <form className="flex flex-col items-center justify-center" onSubmit={handleSubmit}>
         <div className="flex w-full m-2">
-          <input className="border border-gray-700 w-1/2 p-3 text-gray-900 text-sm font-semibold hover:bg-gray-50 focus:outline-purple-900 focus:border-none focus:font-light placeholder-gray-900 .placeholder-opacity-100 rounded-sm mr-1" name="firstName" placeholder="First Name" onChange={handleChange} />
+          <input className="border border-gray-700 w-1/2 sm:p-3 p-2 text-gray-900 text-sm font-semibold hover:bg-gray-50 focus:outline-purple-900 focus:border-none focus:font-light placeholder-gray-900 .placeholder-opacity-100 rounded-sm mr-1" name="firstName" placeholder="First Name" onChange={handleChange} />
           <input className="border border-gray-700 w-1/2 p-3 text-gray-900 text-sm font-semibold hover:bg-gray-50 focus:outline-purple-900 focus:border-none focus:font-light placeholder-gray-900 .placeholder-opacity-100 rounded-sm ml-1" name="lastName" placeholder="Last Name" onChange={handleChange} />
         </div>
 

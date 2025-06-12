@@ -1,26 +1,38 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {RecoilRoot} from 'recoil'
-import Navbar from '../components/Navbar'
-import Signup from '../pages/user/signup.user'
-import Login from '../pages/user/login.user'
-import InstructorPage from './instructor/InstructorPage'
+// src/pages/LandingPage.jsx
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import InstructorHome from './instructor/InstructorHome';
+import CreateCourse from './instructor/CreateCourse';
+import ViewCourse from './instructor/ViewCourse.Instructor';
+import UserHome from './user/UserHome';
+import InstructorPage from './instructor/InstructorPage';
 import InstructorLogin from '../components/InstructorLogin';
-export default function LandingPage() {
+import Signup from './user/signup.user';
+import Login from './user/login.user';
+import InstructorLayout from './instructor/InstructorLayout';
 
+export default function LandingPage() {
   return (
-    <RecoilRoot>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/admin" element={<InstructorPage/>}/>
-          <Route path="/user/signup" element={<Signup />} />
-          <Route path="/user/login" element={<Login />} />
-          <Route path="/instructor" element={<InstructorPage/>} />
-          <Route path="/instructor/login" element={<InstructorLogin/>} />
-          {/* Add more routes as needed */}
-        </Routes>
-      </Router>
-    </RecoilRoot>
-  )
+    <>
+      <Navbar />
+      <Routes>
+        {/* User routes */}
+        <Route path="/user/home" element={<UserHome />} />
+        <Route path="/user/signup" element={<Signup />} />
+        <Route path="/user/login" element={<Login />} />
+
+        {/* Instructor Auth */}
+        <Route path="/instructor/signup" element={<InstructorPage />} />
+        <Route path="/instructor/login" element={<InstructorLogin />} />
+
+        {/* Instructor protected layout and pages */}
+        <Route path="/instructor" element={<InstructorLayout />}>
+          {/* <Route path="home" element={<InstructorHome />} /> */}
+          <Route path="course/create" element={<CreateCourse />} />
+          <Route path="course/preview" element={<ViewCourse />} />
+        </Route>
+      </Routes>
+    </>
+  );
 }

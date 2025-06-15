@@ -1,10 +1,10 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useSetRecoilState } from 'recoil'
-import {purchasedCourses} from '../api/purchases.user'
-import {getUserCourses} from '../api/courses.user'
-import {coursesUser } from '../store/atoms/courses.user'
-import {purchasedAtom} from '../store/atoms/purchasedCourse.user'
+import {purchaseCourse} from '../../api/course/purchase.course'
+import {getUserCourses} from '../../api/user/courses.user'
+import {coursesUser } from '../../store/atoms/user/courses.user'
+import {purchasedAtom} from '../../store/atoms/user/purchasedCourse.user'
 
 export default function NavbarUser() {
     const navigate = useNavigate();

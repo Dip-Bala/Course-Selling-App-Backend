@@ -1,8 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-import { coursesUser } from '../../store/atoms/courses.user'
-import {purchaseCourse} from '../../api/purchase.course'
+import { coursesUser } from '../../store/atoms/user/courses.user'
+import {purchaseCourse} from '../../api/course/purchase.course'
 export default function UserPurchases() {
     const courses = useRecoilValue(coursesUser);
     // console.log(typeof courses)
@@ -27,7 +27,6 @@ function CoursesComponent({ course }) {
     return (
         <div className="bg-white shadow rounded-lg p-4 hover:shadow-md transition-all">
             <div className="aspect-photo bg-gray-200 rounded mb-3">
-                {/* Replace with actual image URL if available */}
                 <img src={course.courseImg} alt={course.title} className="w-full h-full" />
             </div>
             <h2 className="text-lg font-semibold mb-1">{course.title}</h2>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { userLoggedIn } from "../store/atoms/login.user.atom"
-import screenSize from '../store/atoms/screenSize.atom'
+import { userLoggedIn } from "../../store/atoms/user/login.user.atom"
+// import screenSize from '../../store/atoms/screenSize.atom'
 
 export default function Navbar() {
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function Navbar() {
                     </div>
                     :
                     <div className="flex gap-2">
-                        <button className="text-purple-500 bg-purple-100 sm:p-3 p-1 rounded-sm text-sm sm:text-md font-medium" onClick={() => navigate('/instructor/signup')}>Be an Instructor</button>
+                        <button className="text-purple-500 bg-purple-100 sm:p-3 p-1 rounded-sm text-sm sm:text-md font-medium" onClick={() => navigate('/instructor/auth/signup')}>Be an Instructor</button>
                         <button className="border border-purple-700 rounded-sm text-purple-700 sm:p-3 p-1 text-sm sm:text-md font-medium" onClick={() => navigate('/user/login')}>Log in</button>
                         <button className="bg-purple-800  text-white sm:p-3 p-2 rounded-sm text-sm sm:text-md font-medium" onClick={() => navigate('/user/signup')}>Sign up</button>
                     </div>

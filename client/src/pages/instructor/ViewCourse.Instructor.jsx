@@ -1,5 +1,5 @@
 import React from 'react'
-import {allCoursesInstructor} from '../../store/atoms/allCourses.instructor'
+import {allCoursesInstructor} from '../../store/atoms/instructor/allCourses.instructor'
 import {useRecoilValue} from 'recoil'
 
 export default function ViewCourse(){

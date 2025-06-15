@@ -1,8 +1,8 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useSetRecoilState} from 'recoil'
-import viewCourses from '../api/previewCourses.instructor'
-import {allCoursesInstructor} from '../store/atoms/allCourses.instructor'
+import viewCourses from '../../api/instructor/previewCourses.instructor'
+import {allCoursesInstructor} from '../../store/atoms/instructor/allCourses.instructor'
 
 export default function NavbarInstructor(){
     const setCourses = useSetRecoilState(allCoursesInstructor);

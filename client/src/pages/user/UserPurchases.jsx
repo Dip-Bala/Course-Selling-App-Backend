@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil'
-import { purchasedAtom } from '../../store/atoms/purchasedCourse.user'
+import { purchasedAtom } from '../../store/atoms/user/purchasedCourse.user'
 
 export default function UserPurchases() {
     const purchases = useRecoilValue(purchasedAtom)

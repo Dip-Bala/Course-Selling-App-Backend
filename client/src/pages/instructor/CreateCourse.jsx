@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecoilState } from 'recoil'
 import { createCourseAtom } from '../../store/atoms/createCourse.atom'
-import createCourse from '../../api/course'
+import createCourse from '../../api/instructor/course'
 export default function CreateCourse() {
     const [courseData, setCourseData] = useRecoilState(createCourseAtom)
     function handleChange(e) {

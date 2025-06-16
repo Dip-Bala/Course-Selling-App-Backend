@@ -4,12 +4,11 @@ import { purchasedAtom } from '../../store/atoms/user/purchasedCourse.user'
 
 export default function UserPurchases() {
     const purchases = useRecoilValue(purchasedAtom)
-    // console.log("purchase" + purchases)
     return (
         <div className="flex flex-col p-[5%] sm:grid sm:grid-cols-2 sm:p-[3%] lg:grid-cols-3 md:gap-8 max-h-min">
             {
                 purchases.map((p, index) => {
-                    return <PurchasedComponent key={index} p={p} />
+                    return p ? <PurchasedComponent key={index} p={p} /> : null
                 })
             }
         </div>

@@ -14,14 +14,15 @@ export default function Navbar() {
     localStorage.removeItem('token');
     localStorage.removeItem('firstName');
     setUserIsLoggedIn(false);
+    navigate('/')
   };
 
   return (
     <div className="flex justify-center shadow-md">
-      <div className="flex sm:py-5 sm:px-10 items-center justify-between w-full max-w-7xl p-4 gap-5 relative">
+      <div className="flex sm:py-5 sm:px-10 items-center justify-between w-full max-w-7xl p-5 gap-5 relative">
 
         {/* Brand */}
-        <h2 className="font-mono text-xl sm:text-2xl font-semibold text-gray-900 cursor-pointer" onClick={() => navigate('/')}>
+        <h2 className="font-mono text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer" onClick={() => navigate('/')}>
           Edurex
         </h2>
 
@@ -36,7 +37,7 @@ export default function Navbar() {
         </div>
 
         {/* Menu Items (Desktop) */}
-        <div className="hidden md:flex items-center gap-2 text-sm md:text-md font-semibold">
+        <div className="hidden md:flex items-center gap-2 text-sm md:text-md font-semibold ">
           {userIsLoggedIn ? (
             <>
               <p>Hi, {userName}</p>
@@ -44,9 +45,9 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <button className="text-purple-500 bg-purple-100 sm:p-3 p-1 rounded-sm font-medium" onClick={() => navigate('/instructor/auth/signup')}>Be an Instructor</button>
-              <button className="border border-purple-700 rounded-sm text-purple-700 sm:p-3 p-1 font-medium" onClick={() => navigate('/user/login')}>Log in</button>
-              <button className="bg-purple-800 text-white sm:p-3 p-2 rounded-sm font-medium" onClick={() => navigate('/user/signup')}>Sign up</button>
+              <button className="text-purple-500 bg-purple-100 sm:p-3 p-1 rounded-sm font-medium cursor-pointer hover:border hover:border-purple-600 " onClick={() => navigate('/instructor/auth/signup')}>Be an Instructor</button>
+              <button className="border border-purple-700 rounded-sm text-purple-700 sm:p-3 p-1 font-medium cursor-pointer hover:bg-purple-600 hover:text-white" onClick={() => navigate('/user/login')}>Log in</button>
+              <button className="bg-purple-700 text-white sm:p-3 p-2 rounded-sm font-medium cursor-pointer hover:bg-purple-100 hover:border hover:border-purple-700 hover:text-purple-700" onClick={() => navigate('/user/signup')}>Sign up</button>
             </>
           )}
         </div>
@@ -57,13 +58,13 @@ export default function Navbar() {
             {userIsLoggedIn ? (
               <>
                 <p>Hi, {userName}</p>
-                <button className="text-purple-800 border border-purple-800 p-2 rounded-sm" onClick={handleLogout}>Log out</button>
+                <button className="text-purple-800 border border-purple-800 p-2 rounded-sm cursor-pointer hover:border hover:bg-purple-600 hover:text-white " onClick={handleLogout}>Log out</button>
               </>
             ) : (
               <>
-                <button className="text-purple-500 bg-purple-100 p-2 rounded-sm font-medium w-10/12" onClick={() => navigate('/instructor/auth/signup')}>Be an Instructor</button>
-                <button className="border border-purple-700 rounded-sm text-purple-700 p-2 font-medium w-10/12" onClick={() => navigate('/user/login')}>Log in</button>
-                <button className="bg-purple-800 text-white p-2 rounded-sm font-medium w-10/12" onClick={() => navigate('/user/signup')}>Sign up</button>
+                <button className="text-purple-500 bg-purple-100 p-2 rounded-sm font-medium w-10/12 cursor-pointer hover:border hover:border-purple-600 " onClick={() => navigate('/instructor/auth/signup')}>Be an Instructor</button>
+                <button className="border border-purple-700 rounded-sm text-purple-700 p-2 font-medium w-10/12 cursor-pointer hover:bg-purple-600 hover:text-white" onClick={() => navigate('/user/login')}>Log in</button>
+                <button className="bg-purple-800 text-white p-2 rounded-sm font-medium w-10/12 cursor-pointer hover:bg-purple-100 hover:border hover:border-purple-700 hover:text-purple-700" onClick={() => navigate('/user/signup')}>Sign up</button>
               </>
             )}
           </div>

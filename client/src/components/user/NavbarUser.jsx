@@ -1,7 +1,7 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useSetRecoilState } from 'recoil'
-import {purchaseCourse} from '../../api/course/purchase.course'
+import {purchasedCourses} from '../../api/user/purchases.user'
 import {getUserCourses} from '../../api/user/courses.user'
 import {coursesUser } from '../../store/atoms/user/courses.user'
 import {purchasedAtom} from '../../store/atoms/user/purchasedCourse.user'

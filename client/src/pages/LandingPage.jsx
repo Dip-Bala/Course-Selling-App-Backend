@@ -17,7 +17,7 @@ import UserCourses from './user/UserCourses'
 import RequireAuth from '../components/RequiredAuth'
 import InstructorAuthLayout from '../pages/instructor/InstructorAuthLayout'
 import HomePage from './HomePage'
-
+import Footer from './Footer'
 export default function LandingPage() {
   return (
     <div className="bg-purple-50">
@@ -61,6 +61,7 @@ export default function LandingPage() {
         </Route>
         <Route path='/' element={<HomePage />}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }

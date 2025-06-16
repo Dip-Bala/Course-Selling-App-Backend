@@ -3,7 +3,7 @@ import axios from 'axios'
 export async function purchaseCourse(courseId){
     console.log("course Id api" + courseId)
 
-    const token = localStorage.getItem('user-token')
+    const token = localStorage.getItem('token')
     try{
         const data = await axios.post('/api/v1/course/purchase', 
             {courseId: courseId}, //body

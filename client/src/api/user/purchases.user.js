@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 export async function purchasedCourses(){
-    const token = localStorage.getItem('user-token')
+    const token = localStorage.getItem('token')
+    console.log(token)
     try{
         const data = await axios.get('/api/v1/user/purchased-courses',{
             withCredentials: true,

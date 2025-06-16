@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import { coursesUser } from '../../store/atoms/user/courses.user'
 import {purchaseCourse} from '../../api/course/purchase.course'
-export default function UserPurchases() {
+
+
+export default function UserCourses() {
     const courses = useRecoilValue(coursesUser);
     // console.log(typeof courses)
     return (

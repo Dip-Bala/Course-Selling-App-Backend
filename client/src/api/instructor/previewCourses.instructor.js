@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default async function viewCourses() {
-    const token = localStorage.getItem('instructor-token');
+    const token = localStorage.getItem('token');
     try {
         const response = await axios.get('/api/v1/admin/courses',
             {

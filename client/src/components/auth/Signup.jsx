@@ -17,7 +17,7 @@ export default function SignupComponent({handleSubmit}){
 
         <input className="border border-gray-700 p-2 w-[100%] text-gray-900 text-sm font-semibold hover:bg-gray-50 focus:outline-purple-900 focus:border-none focus:font-light placeholder-gray-900 .placeholder-opacity-100 rounded-sm m-2 sm:p-3" name="email" placeholder="Email" onChange={handleChange} />
         <input className="border border-gray-700 p-2 w-[100%] text-gray-900 text-sm font-semibold hover:bg-gray-50 focus:outline-purple-900 focus:border-none focus:font-light placeholder-gray-900 .placeholder-opacity-100 rounded-sm m-2 sm:p-3" name="password" placeholder="Password" type="password" onChange={handleChange} />
-        <button className="bg-purple-700 text-white font-semibold p-2 rounded-sm mt-5 w-[100%] sm:p-3" type="submit">Sign Up</button>
+        <button className="bg-purple-700 text-white font-semibold p-2 rounded-sm mt-5 w-[100%] sm:p-3 hover:bg-purple-600" type="submit">Sign Up</button>
       </form>
       )
 }

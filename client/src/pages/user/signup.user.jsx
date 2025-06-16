@@ -1,16 +1,17 @@
-// frontend/src/pages/Signup.jsx
-import { useState } from 'react';
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { userSignup } from '../../api/user/auth.user';
 import SignupComponent from '../../components/auth/Signup';
 import { signupAtom } from '../../store/atoms/auth/signupAtom.js'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function UserSignup() {
-  const setSignupData = useSetRecoilState(signupAtom);
+  const navigate = useNavigate();
+  const [signupData, setSignupData] = useRecoilState(signupAtom);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await userSignup(formData);
+    const data = await userSignup(signupData);
     if (data === "Signup successful" || data.includes("success")) {
       setSignupData({ email: '', password: '', firstName: '', lastName: '' });
       navigate('/user');

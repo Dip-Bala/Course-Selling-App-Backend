@@ -2,20 +2,25 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
 import { instructorLogin } from '../../api/instructor/auth.instructor'
-import { instructorLoggedIn } from '../../store/atoms/instructor/login.instructor.atom'
 import Login from '../../components/auth/Login'
+import { useRecoilState } from 'recoil'
+import {loginAtom} from '../../store/atoms/auth/loginAtom'
+import { userLoggedIn } from '../../store/atoms/loggedInStateAtom'
+
 
 export default function InstructorLogin() {
     const navigate = useNavigate();
-    const setUserLoggedIn = useSetRecoilState(instructorLoggedIn)
-    
+    const setUserLoggedIn = useSetRecoilState(userLoggedIn);
+    const [loginData, setLoginData] = useRecoilState(loginAtom);
+
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await instructorLogin(formData); //response from api call
+        const response = await instructorLogin(loginData); //response from api call
         alert(response.message);
         if (response.token) {
             localStorage.setItem('firstName', response.firstName);
-            localStorage.setItem('instructor-token', response.token);
+            localStorage.setItem('token', response.token);
+            setLoginData({email: '', password: ''});
             setUserLoggedIn(true);
             navigate('/instructor/course/preview')
         }

@@ -16,7 +16,7 @@ import UserPurchases from './user/UserPurchases'
 import UserCourses from './user/UserCourses'
 import RequireAuth from '../components/RequiredAuth'
 import InstructorAuthLayout from '../pages/instructor/InstructorAuthLayout'
-
+import HomePage from './HomePage'
 
 export default function LandingPage() {
   return (
@@ -25,7 +25,7 @@ export default function LandingPage() {
       <Routes>
         {/* User routes */}
         <Route path="/user" element={
-          <RequireAuth role="user">
+          <RequireAuth >
           <UserLayout />
         </RequireAuth>
       }>
@@ -50,14 +50,16 @@ export default function LandingPage() {
 
         {/* Instructor protected layout and pages */}
         <Route path="/instructor" element={
-           <RequireAuth role="instructor">
+           <RequireAuth >
            <InstructorLayout />
          </RequireAuth>
         }>
           {/* <Route path="home" element={<InstructorHome />} /> */}
+          <Route index element={<Navigate to="course/preview" replace />} />
           <Route path="course/create" element={<CreateCourse />} />
           <Route path="course/preview" element={<ViewCourse />} />
         </Route>
+        <Route path='/' element={<HomePage />}/>
       </Routes>
     </div>
   );

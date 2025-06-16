@@ -25,12 +25,15 @@ export default function InstructorAuthLayout() {
   };
 
   return (
-          <div className="flex flex-col justify-center items-center bg-amber-50 py-20">
-                    <div className="flex flex-col justify-center items-center gap-5">
+          <div className="flex flex-col justify-center items-center bg-amber-50 py-20 " style={{ backgroundImage: "url('/assets/topography2.svg')"}}>
+            <div className="h-full bg-amber-50 py-20">
+            <div className="flex flex-col justify-center items-center gap-5   w-content ">
                         <h1 className="lg:text-6xl sm:text-4xl text-3xl font-semibold font-serif">Come teach with us</h1>
                         <p className="">Become an instructor --- help people learn and grow</p>
                     </div>
-                    <InstructorSignup/>
+                    <InstructorSignup />
+            </div>
+      
             </div>
     
   );

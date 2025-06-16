@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default async function createCourse(courseData) {
-    const token = localStorage.getItem('instructor-token');
+    const token = localStorage.getItem('token');
     console.log(token)
     try {
         const response = await axios.post('/api/v1/admin/course/create', courseData,

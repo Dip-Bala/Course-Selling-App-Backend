@@ -6,12 +6,13 @@ import {allCoursesInstructor} from '../../store/atoms/instructor/allCourses.inst
 
 export default function NavbarInstructor(){
     const setCourses = useSetRecoilState(allCoursesInstructor);
+    const navigate = useNavigate();
+
     async function getCourses(){
         const data = await viewCourses();
         setCourses(data)
         navigate('/instructor')
     }
-    const navigate = useNavigate();
     return(
         <div className="flex justify-center items-center gap-4 p-4 ">
             <button className="flex items-center bg-purple-400 text-white font-medium text-sm p-1 rounded-sm" 

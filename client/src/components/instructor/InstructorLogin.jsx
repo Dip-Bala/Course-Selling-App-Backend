@@ -4,13 +4,15 @@ import { useSetRecoilState } from 'recoil'
 import { instructorLogin } from '../../api/instructor/auth.instructor'
 import Login from '../../components/auth/Login'
 import { useRecoilState } from 'recoil'
-import {loginAtom} from '../../store/atoms/auth/loginAtom'
-import { userLoggedIn } from '../../store/atoms/loggedInStateAtom'
+import { loginAtom } from '../../store/atoms/auth/loginAtom'
+import { userLoggedIn, userFirstName } from '../../store/atoms/loggedInStateAtom'
 
 
 export default function InstructorLogin() {
     const navigate = useNavigate();
     const setUserLoggedIn = useSetRecoilState(userLoggedIn);
+    const setUserName = useSetRecoilState(userFirstName)
+
     const [loginData, setLoginData] = useRecoilState(loginAtom);
 
     async function handleSubmit(e) {
@@ -20,14 +22,15 @@ export default function InstructorLogin() {
         if (response.token) {
             localStorage.setItem('firstName', response.firstName);
             localStorage.setItem('token', response.token);
-            setLoginData({email: '', password: ''});
+            setLoginData({ email: '', password: '' })
             setUserLoggedIn(true);
-            navigate('/instructor/course/preview')
+            setUserName(response.firstName)
+            navigate('/instructor/preview')
         }
 
     }
     return (
-        
-        <Login handleSubmit={handleSubmit}/>
+
+        <Login handleSubmit={handleSubmit} />
     )
 }

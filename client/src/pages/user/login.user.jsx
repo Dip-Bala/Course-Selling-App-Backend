@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import {useNavigate} from 'react-router-dom'
 import { userLogin } from '../../api/user/auth.user'
-import { userLoggedIn } from '../../store/atoms/loggedInStateAtom'
+import { userLoggedIn, userFirstName } from '../../store/atoms/loggedInStateAtom'
 import Login from '../../components/auth/Login'
 import { useRecoilState } from 'recoil'
 import {loginAtom} from '../../store/atoms/auth/loginAtom'
 
 export default function LoginUser() {
     const navigate = useNavigate();
+    const setUserName = useSetRecoilState(userFirstName)
     const setUserLoggedIn = useSetRecoilState(userLoggedIn)
     const [loginData, setLoginData] = useRecoilState(loginAtom);
     
@@ -21,6 +22,7 @@ export default function LoginUser() {
             localStorage.setItem('token', response.token);
             setLoginData({email: '', password: ''})
             setUserLoggedIn(true);
+            setUserName(response.firstName)
             navigate('/user')
         }
 

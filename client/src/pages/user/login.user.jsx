@@ -28,7 +28,7 @@ export default function LoginUser() {
 
     }
     return (
-        <div className="flex flex-col items-center justify-center p-30 gap-5 md:gap-8">
+        <div className="flex flex-col items-center justify-center gap-5 md:gap-8 py-40 md:py-50">
             <p className="sm:text-4xl text-2xl font-semibold text-gray-900 text-center">Log in to continue your learning journey</p>
            <Login handleSubmit={handleSubmit} />
         </div>

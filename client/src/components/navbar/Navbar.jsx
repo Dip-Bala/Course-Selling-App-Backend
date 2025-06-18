@@ -16,7 +16,7 @@ export default function Navbar() {
     setUserIsLoggedIn(false);
     navigate('/')
   };
-
+  console.log(userIsLoggedIn)
   return (
     <div className="flex justify-center shadow-md">
       <div className="flex sm:py-5 sm:px-10 items-center justify-between w-full max-w-7xl p-5 gap-5 relative">

@@ -11,7 +11,7 @@ import InstructorSignup from '../components/instructor/InstructorSignup';
 import UserSignup from './user/signup.user';
 import UserLogin from './user/login.user';
 import InstructorLayout from './instructor/InstructorLayout';
-import UserHome from './user/UserHome'
+// import UserHome from './user/UserHome'
 import UserPurchases from './user/UserPurchases'
 import UserCourses from './user/UserCourses'
 import RequireAuth from '../components/RequiredAuth'
@@ -20,8 +20,9 @@ import HomePage from './HomePage'
 import Footer from './Footer'
 export default function LandingPage() {
   return (
-    <div className="bg-purple-50">
+    <div className="bg-purple-50 relative">
       <Navbar />
+
       <Routes>
         {/* User routes */}
         <Route path="/user" element={
@@ -29,22 +30,23 @@ export default function LandingPage() {
           <UserLayout />
         </RequireAuth>
       }>
-          <Route index element={<Navigate to="home" replace />} />
-          <Route path="home" element={<UserHome />} />
+          <Route index element={<Navigate to="courses" replace />} />
+          {/* <Route path="home" element={<UserHome />} /> */}
           <Route path="purchases" element={<UserPurchases />} />
           <Route path="courses" element={<UserCourses />} />
 
         </Route>
 
+
         <Route path="/user/signup" element={<UserSignup />} />
         <Route path="/user/login" element={<UserLogin />} />
+
 
         {/* Instructor Auth */}
         <Route path="/instructor/auth" element={<InstructorAuthLayout/>}>
         <Route index element={<Navigate to="signup" replace/>}/>
         <Route path="signup" element={<InstructorSignup />} />
         <Route path="login" element={<InstructorLogin />} />
-
         </Route>
 
 
@@ -60,6 +62,7 @@ export default function LandingPage() {
           <Route path="course/preview" element={<ViewCourse />} />
         </Route>
         <Route path='/' element={<HomePage />}/>
+
       </Routes>
       <Footer/>
     </div>

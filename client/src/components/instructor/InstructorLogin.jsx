@@ -25,7 +25,7 @@ export default function InstructorLogin() {
             setLoginData({ email: '', password: '' })
             setUserLoggedIn(true);
             setUserName(response.firstName)
-            navigate('/instructor/preview')
+            navigate('/instructor/course/preview')
         }
 
     }

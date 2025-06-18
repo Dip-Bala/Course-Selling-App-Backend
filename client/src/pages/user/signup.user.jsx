@@ -20,12 +20,12 @@ export default function UserSignup() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 md:gap-8 ">
-      <div className="w-[100%] md:w-[40%] p-10 m-10 md:p-10">
+    <div className="flex flex-col items-center justify-center gap-5 md:gap-8 py-30">
+      {/* <div className="w-[100%] md:w-[40%] px-20"> */}
         <p className="sm:text-4xl text-2xl font-semibold text-gray-900 text-center mb-4">Sign Up to Learn on Edurax</p>
         <SignupComponent handleSubmit={handleSubmit} />
 
-      </div>
+      {/* </div> */}
     </div>
   );
 }

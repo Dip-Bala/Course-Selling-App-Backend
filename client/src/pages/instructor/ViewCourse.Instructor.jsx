@@ -7,7 +7,7 @@ export default function ViewCourse() {
     const courses = useRecoilValue(allCoursesInstructor);
     console.log(courses);
     return (
-        <div className="flex flex-col justify-center items-center gap-4 p-4 sm:grid sm:grid-cols-2 md:grid-cols-3 md:p-20">
+        <div className="grid grid-cols-1 justify-center items-center gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 m-10 ">
             {
                 courses.map((course, index) => {
                     return <CourseComponent key={index} course={course} />
@@ -23,7 +23,7 @@ function CourseComponent({ course }) {
         console.log(courseId)
     }
     return (
-        <div className="flex flex-col rounded shadow-sm text-gray-700 w-xs ">
+        <div className="flex flex-col rounded shadow-sm text-gray-700 ">
             {/* <div className="w-[50%]"> */}
             <img className="w-fit" src={course.courseImg} />
             {/* </div> */}

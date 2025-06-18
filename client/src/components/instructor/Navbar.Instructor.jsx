@@ -11,7 +11,7 @@ export default function NavbarInstructor(){
     async function getCourses(){
         const data = await viewCourses();
         setCourses(data)
-        navigate('/instructor')
+        navigate('/instructor/course/preview')
     }
     return(
         <div className="flex justify-center items-center gap-4 p-4 ">

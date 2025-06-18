@@ -9,7 +9,7 @@ export default function UserCourses() {
     const courses = useRecoilValue(coursesUser);
     // console.log(typeof courses)
     return (
-        <div className="flex flex-col p-[5%] sm:grid sm:grid-cols-2 sm:p-[3%] lg:grid-cols-3 md:gap-8 max-h-min">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 place-items-center auto-rows-fr justify-center items-center">
             {
                 courses.map((course) => {
                    return  <CoursesComponent key={course._id} course={course} />
@@ -26,17 +26,21 @@ function CoursesComponent({ course }) {
             alert("Congrats you've successfully purchased this course")
         }
     }
+    
     return (
-        <div className="bg-white shadow rounded-lg p-4 hover:shadow-md transition-all">
-            <div className="aspect-photo bg-gray-200 rounded mb-3">
+        <div className="flex flex-col w-80 min-h-[350px] shadow-md rounded-xs hover:shadow-md transition-all justify-between">
+            <div className="aspect-photo">
                 <img src={course.courseImg} alt={course.title} className="w-full h-full" />
             </div>
-            <h2 className="text-lg font-semibold mb-1">{course.title}</h2>
+            <div className="flex flex-col p-4 gap-1">
+            <h2 className="text-lg font-semibold">{course.title}</h2>
             <p className="text-gray-600 text-sm">{course.description}</p>
             <p className="text-sm">{course.category}</p>
             <p className="text-sm">{course.language}</p>
-            <p className="text-sm">$ {course.price}</p>
-            <button className="bg-black text-white p-2 " onClick={() => handlePurchase(course._id)} >Purchase Now</button>
+            <p className="text-sm font-semibold">$ {course.price}</p>
+            <button className="bg-gray-600 text-white p-2 " onClick={() => handlePurchase(course._id)} >Purchase Now</button>
+
+            </div>
         </div>
     )
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import UserCourses from '../pages/user/UserCourses'
+import RequireAuth from '../components/RequiredAuth'
+
 export default function HomePage() {
     return (
         <div className="sm:px-[10%]">
@@ -27,7 +29,10 @@ export default function HomePage() {
                 <div className="text-center">Web 3.0 and Blockchain</div>
                 <div className="text-center">AI and ML</div>
             </div>
+            <RequireAuth >
             <UserCourses/>
+            </RequireAuth>
+           
         </div>
     )
 }

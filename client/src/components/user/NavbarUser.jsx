@@ -2,21 +2,17 @@ import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useSetRecoilState } from 'recoil'
 import {purchasedCourses} from '../../api/user/purchases.user'
-import {getUserCourses} from '../../api/user/courses.user'
-import {coursesUser } from '../../store/atoms/user/courses.user'
+// import {getUserCourses} from '../../api/user/courses.user'
+// import {coursesUser } from '../../store/atoms/user/courses.user'
 import {purchasedAtom} from '../../store/atoms/user/purchasedCourse.user'
 
 export default function NavbarUser() {
     const navigate = useNavigate();
-    const setUserCourses = useSetRecoilState(coursesUser);
+    // const setUserCourses = useSetRecoilState(coursesUser);
     const setpurchasedCourses = useSetRecoilState(purchasedAtom);
     const [isSelected, setIsSelected] = useState('courses');
 
     async function handleCourses(){
-        const response = await getUserCourses();
-        // console.log(response)
-        setUserCourses(response);
-        setIsSelected('courses')
         navigate('/user/courses')
     }
 

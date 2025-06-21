@@ -22,7 +22,6 @@ export default function LandingPage() {
   return (
     <div className="bg-purple-50 relative">
       <Navbar />
-
       <Routes>
         {/* User routes */}
         <Route path="/user" element={

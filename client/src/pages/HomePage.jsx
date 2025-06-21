@@ -29,10 +29,7 @@ export default function HomePage() {
                 <div className="text-center">Web 3.0 and Blockchain</div>
                 <div className="text-center">AI and ML</div>
             </div>
-            <RequireAuth >
             <UserCourses/>
-            </RequireAuth>
-           
         </div>
     )
 }

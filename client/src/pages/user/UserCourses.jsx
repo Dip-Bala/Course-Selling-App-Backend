@@ -1,13 +1,28 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { coursesUser } from '../../store/atoms/user/courses.user'
 import {purchaseCourse} from '../../api/course/purchase.course'
-
+import {getUserCourses} from '../../api/user/courses.user'
+// import {coursesUser } from '../../store/atoms/user/courses.user'
 
 export default function UserCourses() {
+    
+    const setUserCourses = useSetRecoilState(coursesUser);
     const courses = useRecoilValue(coursesUser);
+    useEffect(()=> {
+        const fetchCourses = async () => {
+            try {
+                const response = await getUserCourses();
+                setUserCourses(response);
+            } catch (error) {
+                console.error("Failed to fetch user courses:", error);
+            }
+        };
+        fetchCourses();
+    }, [setUserCourses]);
     // console.log(typeof courses)
+
     return (
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 place-items-center auto-rows-fr justify-center items-center">
             {
@@ -20,11 +35,17 @@ export default function UserCourses() {
 }
 
 function CoursesComponent({ course }) {
+    const navigate = useNavigate()
     async function handlePurchase(courseId){
         const data = await purchaseCourse(courseId);
+        console.log("this got called"+ data)
+
+        if(!data)navigate('/user/login')
         if(data.status === 200){
             alert("Congrats you've successfully purchased this course")
+            
         }
+
     }
     
     return (

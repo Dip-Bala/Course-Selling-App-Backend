@@ -1,28 +1,35 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { userLoggedIn } from '../../store/atoms/loggedInStateAtom'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { userLoggedIn, userFirstName, roleAtom } from '../../store/atoms/loggedInStateAtom'
 import { Menu, X } from 'lucide-react' // or use Heroicons if you prefer
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [userIsLoggedIn, setUserIsLoggedIn] = useRecoilState(userLoggedIn);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const userName = localStorage.getItem('firstName');
+  const userName = useRecoilValue(userFirstName)
+  const [role, setRole] = useRecoilState(roleAtom);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('firstName');
     setUserIsLoggedIn(false);
+    setRole('')
     navigate('/')
   };
-  console.log(userIsLoggedIn)
+  const handleLogo = () => {
+    // console.log(role)
+    if(role === "instructor")navigate('/instructor')
+    else if(role === "user") navigate('/user')
+    else navigate('/')
+  }
+  // console.log(userIsLoggedIn)
   return (
     <div className="flex justify-center shadow-md">
       <div className="flex sm:py-5 sm:px-10 items-center justify-between w-full max-w-7xl p-5 gap-5 relative">
 
         {/* Brand */}
-        <h2 className="font-mono text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer" onClick={() => navigate('/')}>
+        <h2 className="font-mono text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer" onClick={handleLogo}>
           Edurex
         </h2>
 

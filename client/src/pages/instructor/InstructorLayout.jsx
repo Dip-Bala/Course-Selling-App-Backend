@@ -4,9 +4,11 @@ import { Outlet } from 'react-router-dom';
 
 export default function InstructorLayout() {
   return (
-    <div>
+    <div className="flex justify-between ">
       <NavbarInstructor />
+      <div className="w-full  bg-white/30 ">
       <Outlet /> 
+      </div>
     </div>
   );
 }

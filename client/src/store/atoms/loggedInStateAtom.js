@@ -8,4 +8,9 @@ export const userLoggedIn = atom({
 export const userFirstName = atom({
     key: 'userFirstName',
     default: '',
-  });
+});
+
+export const roleAtom = atom({
+    key: 'roleAtom',
+    default : ''
+})

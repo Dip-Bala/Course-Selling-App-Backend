@@ -14,18 +14,19 @@ export default function NavbarInstructor(){
         navigate('/instructor/course/preview')
     }
     return(
-        <div className="flex justify-center items-center gap-4 p-4 ">
-            <button className="flex items-center bg-purple-400 text-white font-medium text-sm p-1 rounded-sm" 
+        <div className="flex flex-col gap-4 p-4 w-48 border-r">
+            <button className="flex items-center text-gray-900 font-medium text-sm rounded-sm focus:bg-purple-200 p-2 transition-all" 
             onClick={()=> navigate('/instructor/course/create')}>
-            <svg width="32px" height="30px" viewBox="-1.4 -1.4 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M12 6V18" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
             Create Course
             </button>
 
 
-            <button className="flex items-center bg-purple-400 text-white font-medium text-sm p-2 rounded-sm" onClick={getCourses}>
+            <button className="flex items-center text-gray-900 font-medium text-sm rounded-sm focus:bg-purple-200 p-2" onClick={getCourses}>
                 View All Courses
             </button>
          </div>
     )
 }
 
+
+//  <svg width="32px" height="30px" viewBox="-1.4 -1.4 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0" transform="translate(0,0), scale(1)"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M12 6V18" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg> 

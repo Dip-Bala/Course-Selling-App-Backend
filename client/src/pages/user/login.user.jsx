@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import {useNavigate} from 'react-router-dom'
 import { userLogin } from '../../api/user/auth.user'
-import { userLoggedIn, userFirstName } from '../../store/atoms/loggedInStateAtom'
+import { userLoggedIn, userFirstName, roleAtom } from '../../store/atoms/loggedInStateAtom'
 import Login from '../../components/auth/Login'
 import { useRecoilState } from 'recoil'
 import {loginAtom} from '../../store/atoms/auth/loginAtom'
@@ -11,6 +11,7 @@ export default function LoginUser() {
     const navigate = useNavigate();
     const setUserName = useSetRecoilState(userFirstName)
     const setUserLoggedIn = useSetRecoilState(userLoggedIn)
+    const setRole = useSetRecoilState(roleAtom)
     const [loginData, setLoginData] = useRecoilState(loginAtom);
     
     async function handleSubmit(e) {
@@ -18,10 +19,10 @@ export default function LoginUser() {
         const response = await userLogin(loginData); //response from api call
         alert(response.message);
         if (response.token) {
-            localStorage.setItem('firstName', response.firstName);
             localStorage.setItem('token', response.token);
             setLoginData({email: '', password: ''})
             setUserLoggedIn(true);
+            setRole('user');
             setUserName(response.firstName)
             navigate('/user')
         }
